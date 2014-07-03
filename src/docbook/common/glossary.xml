@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<glossary>
+    <title>术语表</title>
+    <glossdiv>
+        <title>F</title>
+        <glossentry id="faq">
+            <glossterm>FAQ</glossterm>
+            <glossdef>
+                <para>Frequently Asked Questions，常见问题。</para>
+            </glossdef>
+        </glossentry>
+    </glossdiv>
+</glossary>

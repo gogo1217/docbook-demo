@@ -1,0 +1,143 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.smarttools.demo</groupId>
+    <artifactId>docbook-demo</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOTS</version>
+
+	<properties>
+		<docbook.xsl.version>0.0.1-SNAPSHOTS</docbook.xsl.version>
+		<docbook.dir>src/docbook</docbook.dir>
+		<staging.dir>${project.build.directory}/staging</staging.dir>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- 解压依赖文件 -->
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<phase>generate-resources</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>com.smarttools.docbook</groupId>
+						    <artifactId>docbook-xsl</artifactId>
+							<version>${docbook.xsl.version}</version>
+							<type>zip</type>
+						</artifactItem>
+					</artifactItems>
+					<overWrite>false</overWrite>
+					<outputDirectory>${staging.dir}</outputDirectory>
+				</configuration>
+			</plugin>
+			<!-- 生成doc -->
+			<plugin>
+				<groupId>com.agilejava.docbkx</groupId>
+				<artifactId>docbkx-maven-plugin</artifactId>
+				<dependencies>
+					<!-- 避免远程拉去DTD，加快编译速度 -->
+					<dependency>
+						<groupId>docbook</groupId>
+						<artifactId>docbook-xml</artifactId>
+						<version>4.5</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>gen-pdf</id>
+						<goals>
+							<goal>generate-pdf</goal>
+						</goals>
+						<phase>prepare-package</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<showXslMessages>true</showXslMessages>
+					<!-- 转换样式表 -->
+					<foCustomization>${staging.dir}/xslt/pdf.xsl</foCustomization>
+					<!-- <htmlCustomization>${staging.dir}/bonc-docbook-xslt/xhtml.xsl</htmlCustomization> -->
+					<xincludeSupported>true</xincludeSupported>
+					<!-- 图片信息 -->
+					<calloutGraphicsPath>${staging.dir}/images/docbook/callouts/</calloutGraphicsPath>
+					<admonGraphicsPath>${staging.dir}/images/docbook/</admonGraphicsPath>
+					<!-- 字体配置信息 -->
+					<fonts>
+						<font>
+							<name>WenQuanYi Zen Hei</name>
+							<style>normal</style>
+							<weight>normal</weight>
+							<embedFile>${staging.dir}/fonts/WenQuanYiZenHei.ttf</embedFile>
+							<metricsFile>${staging.dir}/fonts/WenQuanYiZenHei-metrics.xml</metricsFile>
+						</font>
+						<font>
+							<name>WenQuanYi Zen Hei Sharp</name>
+							<style>normal</style>
+							<weight>normal</weight>
+							<embedFile>${staging.dir}/fonts/WenQuanYiZenHeiSharp.ttf</embedFile>
+							<metricsFile>${staging.dir}/fonts/WenQuanYiZenHeiSharp-metrics.xml</metricsFile>
+						</font>
+						<font>
+							<name>WenQuanYi Zen Hei Mono</name>
+							<style>normal</style>
+							<weight>normal</weight>
+							<embedFile>${staging.dir}/fonts/WenQuanYiZenHeiMono.ttf</embedFile>
+							<metricsFile>${staging.dir}/fonts/WenQuanYiZenHeiMono-metrics.xml</metricsFile>
+						</font>
+					</fonts>
+					<titleFontFamily>'WenQuanYi Zen Hei'</titleFontFamily>
+					<bodyFontFamily>'WenQuanYi Zen Hei Sharp'</bodyFontFamily>
+					<monospaceFontFamily>'WenQuanYi Zen Hei Mono'</monospaceFontFamily>
+					<!-- doc配置信息 -->
+					<sourceDirectory>${docbook.dir}</sourceDirectory>
+					<targetDirectory>${project.build.directory}/docs</targetDirectory>
+					<includes>User_Guide.xml</includes>
+				</configuration>
+			</plugin>
+			<!-- 生成字体metrics文件 -->
+			<plugin>
+				<groupId>com.agilejava.docbkx</groupId>
+				<artifactId>docbkx-fop-support</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<ansi>false</ansi>
+							<sourceDirectory>${staging.dir}/fonts</sourceDirectory>
+							<targetDirectory>${staging.dir}/fonts</targetDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

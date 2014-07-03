@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+    <title>介绍</title>
+    <section>
+        <title>主要内容</title>
+        <itemizedlist>
+            <listitem>参考jboss-docbook-xsl中的章节标题的设置，去掉了jboss语法高亮、页眉页脚等设置，需要使用fop1.0及以上</listitem>
+            <listitem>默认使用文泉驿正黑开源中文字体（含英文字体）作为PDF的内嵌字体</listitem>
+        </itemizedlist>
+    </section>
+</chapter>

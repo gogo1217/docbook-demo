@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<bookinfo>
+  <title>docbook示例</title>
+  <subtitle>示例</subtitle>
+  <releaseinfo>版本 0.0.1</releaseinfo>
+  <pubdate>2014年 7月</pubdate>
+  <author>
+    <surname>gogo1217</surname>
+  </author>
+
+  <abstract>
+    <para>这是一本docbook语法和docbook-xsl转换效果的演示文档。</para>
+  </abstract>
+
+  <!-- copyright info -->
+
+  <copyright>
+    <year>2013</year>
+    <year>2014</year>
+    <holder>XXX有限公司</holder>
+  </copyright>
+</bookinfo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book lang="zh_cn" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- 前言 -->
+	<xi:include href="User_Guide/Book_Info.xml" />
+	<!-- 历史记录 -->
+	<xi:include href="User_Guide/Revision_History.xml" />
+	<!-- 声明 -->
+	<xi:include href="common/Preface.xml" />
+	<!-- 介绍 -->
+	<xi:include href="User_Guide/chapter-introduction.xml" />
+	<!-- faq -->
+	<xi:include href="User_Guide/faq.xml" />
+	<!-- 名称解释 -->
+	<xi:include href="common/glossary.xml" />
+</book>

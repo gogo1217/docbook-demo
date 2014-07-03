@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter id="faq_chapter">
+    <title>FAQ</title>
+    <qandaset>
+        <qandaentry>
+            <question>
+                <para>docbook干吗用的？</para>
+            </question>
+            <answer>
+                <para>写文档用的</para>
+            </answer>
+        </qandaentry>
+        <qandaentry>
+            <question>
+                <para>docbook-xsl干吗用的</para>
+            </question>
+            <answer>
+                <para>定义xml转化格式,下面是语法高亮演示</para> 
+                <programlisting language="xml">
+<![CDATA[
+<foo>bar</foo>
+]]>
+                 </programlisting>
+            </answer>
+        </qandaentry>
+        
+    </qandaset>
+</chapter>
+
